@@ -1,0 +1,5 @@
+Text,Result
+"""Add credit or debit card""",navigate_to_card_form
+"""Add payment method""",navigate_to_card_form
+"""Remove Card""",other
+"""Delete Credit Card""",other
