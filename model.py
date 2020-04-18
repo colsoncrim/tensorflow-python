@@ -2,23 +2,28 @@ import tensorflow as tf
 from tensorflow import keras 
 import numpy as np 
 import matplotlib.pyplot as plt 
-import functools
-
+# import functools
 # print(tf.__version__)
 
-TRAIN_DATA_URL = "https://raw.githubusercontent.com/colsoncrim/tensorflow-python/master/navigate_to_card_form%20-%20Sheet1.csv"
-TEST_DATA_URL = "https://storage.googleapis.com/tf-datasets/titanic/eval.csv"
 
-train_file_path = tf.keras.utils.get_file("train.csv", TRAIN_DATA_URL)
-test_file_path = tf.keras.utils.get_file("eval.csv", TEST_DATA_URL)
+# create and train the model
+model = tf.keras.Sequential([
+  feature_layer,
+  layers.Dense(128, activation='sigmoid'),
+  layers.Dense(128, activation='sigmoid'),
+  layers.Dense(1)
+])
 
-np.set_printoptions(precision=3, suppress=True)
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
+              metrics=['accuracy'])
 
+model.fit(train_ds,
+          validation_data=val_ds,
+          epochs=5)
 
-
-# encoder = info.features['text'].encoder
-
-# print('Vocabulary size: {}'.format(encoder.vocab_size))
+loss, accuracy = model.evaluate(test_ds)
+print("Accuracy", accuracy)
 
 
 
